@@ -96,7 +96,16 @@ public class LinkedList implements List {
 
     @Override
     public int indexOf(int data) {
-        return 0;
+        ListNode temp = head;
+        int index = 0;
+        while (temp != null) {
+            if(temp.getData() == data) {
+                return index;
+            }
+            index += 1;
+            temp = temp.getNext();
+        }
+        return -1;
     }
 
     @Override
@@ -117,6 +126,13 @@ public class LinkedList implements List {
 
     @Override
     public boolean contains(int data) {
+        ListNode temp = head;
+        while (temp != null) {
+            if(temp.getData() == data) {
+                return true;
+            }
+            temp = temp.getNext();
+        }
         return false;
     }
 
