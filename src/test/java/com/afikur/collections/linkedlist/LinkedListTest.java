@@ -9,26 +9,41 @@ public class LinkedListTest {
     @Test
     public void testInsertAtEnd() {
         List list = new LinkedList();
-        list.insertAtEnd(1);
-        list.insertAtEnd(2);
-        list.insertAtEnd(3);
-        assertEquals(3, list.getLength());
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(3, list.size());
     }
 
     @Test
     public void testIsEmpty() {
         List list = new LinkedList();
         assertTrue(list.isEmpty());
+
+        list.add(1);
+        assertFalse(list.isEmpty());
     }
 
     @Test
     public void testLinkedListLength() {
         List list = new LinkedList();
-        list.insertAtBegin(1);
-        list.insertAtBegin(2);
-        list.insertAtBegin(3);
-        list.insertAtBegin(4);
-        System.out.println(list);
-        assertEquals(4, list.getLength());
+        list.add(0,1);
+        list.add(1, 2);
+
+        assertEquals(2, list.size());
+    }
+
+    @Test
+    public void testInsert() {
+        List list = new LinkedList();
+        list.add(0, 1);
+        list.add(0, 2);
+        list.add(0, 3);
+        list.add(1, 4);
+        list.add(2, 5);
+        list.add(3, 6);
+        list.add(2, 11);
+
+        assertArrayEquals(list.toArray(), new int[]{3, 4, 11, 5, 6, 2, 1});
     }
 }
