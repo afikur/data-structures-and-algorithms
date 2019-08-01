@@ -90,8 +90,23 @@ public class LinkedList implements List {
     }
 
     @Override
-    public boolean remove(int position) {
-        return false;
+    public boolean remove(int data) {
+        // if nothing in the list, do nothing
+        if (head == null) {
+            return false;
+        }
+
+        ListNode temp = head;
+        while (temp != null) {
+            if(temp.getData() == data) {
+                temp.setNext(temp.getNext().getNext());
+            }
+            temp = temp.getNext();
+        }
+
+        // reduce the length of the list
+        length -= 1;
+        return true;
     }
 
     @Override
@@ -138,7 +153,33 @@ public class LinkedList implements List {
 
     @Override
     public boolean removeAt(int position) {
-        return false;
+        if (position < 0) {
+            position = 0;
+        }
+
+        if (position >= length) {
+            position = length - 1;
+        }
+
+        // if nothing in the list, do nothing
+        if (head == null)
+            return false;
+
+        // if removing the head element...
+        if (position == 0) {
+            head = head.getNext();
+        }
+        // else advance to the correct position and remove
+        else {
+            ListNode temp = head;
+            for (int i=1; i<position; i+=1) {
+                temp = temp.getNext();
+            }
+            temp.setNext(temp.getNext().getNext());
+        }
+        // reduce the length of the list
+        length -= 1;
+        return true;
     }
 
     @Override
