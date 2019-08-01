@@ -111,16 +111,16 @@ public class LinkedList implements List {
 
     @Override
     public String toString() {
-        String result = "[";
+        StringBuilder result = new StringBuilder("[");
         if (head == null) {
-            return result+"]";
+            return result.append("]").toString();
         }
-        result = result + head.getData();
+        result.append(head.getData());
         ListNode temp = head.getNext();
         while (temp != null) {
-            result = result + "," + temp.getData();
+            result.append(",").append(temp.getData());
             temp = temp.getNext();
         }
-        return result + "]";
+        return result.append("]").toString();
     }
 }
