@@ -4,13 +4,6 @@ public class LinkedList implements List {
     private int length;
     private ListNode head;
 
-    private void insertAtBegin(int data) {
-        ListNode node = new ListNode(data);
-        node.setNext(head);
-        head = node;
-        length += 1;
-    }
-
     @Override
     public boolean add(int data) {
         ListNode node = new ListNode(data);
@@ -49,12 +42,12 @@ public class LinkedList implements List {
             position = length;
         }
 
+        ListNode newNode = new ListNode(data);
         // if list is already empty or position is zero
         if(head == null || position == 0) {
-            insertAtBegin(data);
-            return true;
+            newNode.setNext(head);
+            head = newNode;
         } else {
-            ListNode newNode = new ListNode(data);
             ListNode temp = head;
 
             // advance to the correct position and add
@@ -63,46 +56,12 @@ public class LinkedList implements List {
             }
             newNode.setNext(temp.getNext());
             temp.setNext(newNode);
-
-            // increment list length
-            length += 1;
-
-            return true;
-        }
-    }
-
-    public ListNode removeFromBegin() {
-        ListNode node = head;
-        if(node != null) {
-            head = node.getNext();
-            node.setNext(null);
-        }
-        return node;
-    }
-
-    public ListNode removeFromEnd() {
-        if(head == null) {
-            return null;
-        }
-        ListNode p = head, q = head;
-
-        // if list contain one node (the head node)
-        if(p.getNext() == null) {
-            head = null;
-            length -= 1;
-            return p;
         }
 
-        // advance to the second last position and remove the last node
-        while(p.getNext() != null) {
-            q = p;
-            p = p.getNext();
-        }
-        q.setNext(null);
-        length -= 1;
+        // increment list length
+        length += 1;
 
-        // return deleted node
-        return p;
+        return true;
     }
 
     @Override
