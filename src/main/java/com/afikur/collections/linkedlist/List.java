@@ -47,5 +47,8 @@ public interface List {
      */
     boolean isEmpty();
 
+    /**
+     * Returns an array containing all of the elements in this list in proper sequence;
+     */
     int[] toArray();
 }
