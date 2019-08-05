@@ -71,12 +71,22 @@ public class LinkedList implements List {
             return false;
         }
 
+        // if data is the head element
+        if(head.getData() == data) {
+            head = head.getNext();
+            // reduce the length of the list
+            length -= 1;
+            return true;
+        }
+
         // advance to the correct node and remove
-        ListNode temp = head;
-        while (temp != null) {
-            if(temp.getData() == data) {
-                temp.setNext(temp.getNext().getNext());
+        ListNode temp = head, q = head;
+        while (temp.getNext() != null) {
+
+            if(temp.getNext().getData() == data) {
+                q.setNext(temp.getNext().getNext());
             }
+            q = temp;
             temp = temp.getNext();
         }
 
